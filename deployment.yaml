@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: jbpm
+  name: jbpm
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jbpm
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: jbpm
+    spec:
+      containers:
+        - image: jboss/jbpm-server-full:latest
+          imagePullPolicy: IfNotPresent
+          name: jbpm
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 8001
+              protocol: TCP
+          resources: {}
